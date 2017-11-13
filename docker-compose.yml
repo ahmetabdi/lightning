@@ -1,0 +1,29 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/app
+    environment:
+      POSTGRES_HOST: database
+      POSTGRES_DB: lightning_dev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PORT: 4000
+    depends_on:
+      - database
+  database:
+    image: postgres:10.0
+    volumes:
+       - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: lightning_dev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+volumes:
+    db_data:
+
