@@ -7,7 +7,7 @@ services:
     ports:
       - "4000:4000"
     volumes:
-      - .:/app
+      - .:/app:cached
     environment:
       POSTGRES_HOST: database
       POSTGRES_DB: lightning_dev
@@ -19,7 +19,7 @@ services:
   database:
     image: postgres:10.0
     volumes:
-       - db_data:/var/lib/postgresql/data
+       - db_data:/var/lib/postgresql/data:cached
     environment:
       POSTGRES_DB: lightning_dev
       POSTGRES_USER: postgres
